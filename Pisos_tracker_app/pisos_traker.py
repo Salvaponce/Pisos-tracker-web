@@ -1,3 +1,4 @@
+import os
 import re
 import time
 from selenium.webdriver.common.keys import Keys
@@ -15,10 +16,9 @@ class PisosAPI:
     def get_chrome_web_driver(self, options):
         GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
         CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
-        #options.binary_location = os.environ.get("GOOGLE_CHROME_PATH")
-        #options.binary_location = GOOGLE_CHROME_PATH
-        #return webdriver.Chrome(executable_path=str(os.environ.get('CHROMEDRIVER_PATH')), chrome_options=options)
-        return webdriver.Chrome(executable_path='Pisos_tracker_app/chromedriver.exe', chrome_options=options)
+        options.binary_location = os.environ.get("GOOGLE_CHROME_PATH")
+        return webdriver.Chrome(executable_path=str(os.environ.get('CHROMEDRIVER_PATH')), chrome_options=options)
+        #return webdriver.Chrome(executable_path='Pisos_tracker_app/chromedriver.exe', chrome_options=options)
 
     def get_web_driver_options(self):
         return webdriver.ChromeOptions()
@@ -26,12 +26,12 @@ class PisosAPI:
     def set_browser_options(self, options): 
         options.add_argument('--ignore-certificate-errors')  
         options.add_argument('--incognito')     
-        """options.add_argument("--headless")        
+        options.add_argument("--headless")        
         options.headless = True
         options.add_argument("window-size=1400,800")
         options.add_argument('--disable-gpu')
         options.add_argument("--disable-dev-shm-usage")
-        options.add_argument("--no-sandbox")"""
+        options.add_argument("--no-sandbox")
 
     def run(self):
         print(f'Buscando en {self.place}...')
