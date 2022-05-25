@@ -25,8 +25,8 @@ def home(request):
     return render(request, 'home.html')
 
 def results(request):
-    # 'https://www.idealista.com/','https://www.yaencontre.com/''https://www.pisos.com/'
-    ls = request.session.get('ls', ['https://www.pisos.com/', 'https://www.habitaclia.com/'])
+    # 'https://www.idealista.com/'
+    ls = request.session.get('ls', ['https://www.pisos.com/', 'https://www.habitaclia.com/','https://www.yaencontre.com/'])
     count = request.session.get('count', 0)
     data_list = request.session.get('data_list', [])
     place = request.session.get('place', False)

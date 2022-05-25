@@ -1,7 +1,6 @@
 import os
 import re
 import time
-from selenium.webdriver.common.keys import Keys
 from selenium import webdriver
 
 class PisosAPI:
@@ -70,13 +69,13 @@ class PisosAPI:
                 house=self.get_by_habitaclia(f'https://www.habitaclia.com/alquiler-{self.place}.html?ordenar=mas_recientes')
             else:
                 house=self.get_by_habitaclia(f'https://www.habitaclia.com/alquiler-{self.place}.html')
-        #elif 'yaencontre' in self.base_url:
-        #    if self.filters == 'Barato':
-        #        house=self.get_by_yaencontre(f'https://www.yaencontre.com/alquiler/pisos/{self.place}/o-precio-asc')
-        #    elif self.filters == 'Recientes':
-        #        house=self.get_by_yaencontre(f'https://www.yaencontre.com/alquiler/pisos/{self.place}/o-recientes')
-        #    else:
-        #        house=self.get_by_yaencontre(f'https://www.yaencontre.com/alquiler/pisos/{self.place}/')
+        elif 'yaencontre' in self.base_url:
+            if self.filters == 'Barato':
+                house=self.get_by_yaencontre(f'https://www.yaencontre.com/alquiler/pisos/{self.place}/o-precio-asc')
+            elif self.filters == 'Recientes':
+                house=self.get_by_yaencontre(f'https://www.yaencontre.com/alquiler/pisos/{self.place}/o-recientes')
+            else:
+                house=self.get_by_yaencontre(f'https://www.yaencontre.com/alquiler/pisos/{self.place}/')
         return house
        
 
@@ -100,6 +99,16 @@ class PisosAPI:
         result_link_list = self.driver.find_elements_by_class_name('js-item-with-link')
         links = [link.get_attribute('data-href') for link in result_link_list][:3]
         return links
+    
+    def get_by_yaencontre(self, link):
+        self.driver.get(link)
+        time.sleep(2)
+        result_link_list = self.driver.find_elements_by_tag_name('a')
+        links = []
+        for result in result_link_list:
+            if result.get_attribute('title') and 'inmobiliarias' not in result.get_attribute('href'):
+                links.append(result.get_attribute('href'))
+        return links[:3]
 
     def get_house_info(self, links): 
         houses = []       
@@ -110,7 +119,7 @@ class PisosAPI:
             position = self.get_position()
             image = self.get_image()  
             house_info = {}   
-            #print(link, adress, image, price)     
+            #print('|link: '+str(link), '|adress:'+str(adress), '|image: '+str(image), '|price: ' +str(price))     
             if price and adress and image:
                 house_info = {
                 'link':link,
@@ -137,6 +146,8 @@ class PisosAPI:
                             return elem.text
                     except Exception as e:
                         print(e)
+            elif 'yaencontre' in self.base_url:
+                price = self.driver.find_elements_by_class_name('price')[1].text
         except Exception as e:
             print(e)
             return None
@@ -149,6 +160,8 @@ class PisosAPI:
                 adress = self.driver.find_element_by_tag_name('h1').text
             elif 'idealista' in self.base_url:
                 adress = self.driver.find_element_by_class_name('main-info__title-main').text
+            elif 'yaencontre' in self.base_url:
+                adress = self.driver.find_element_by_id('title-realestate').text
         except Exception as e:
             print(e)
             return None
@@ -161,6 +174,8 @@ class PisosAPI:
                 position = self.driver.find_element_by_class_name('position').text        
             elif 'idealista' in self.base_url:
                 position = self.driver.find_element_by_class_name('main-info__title-minor').text
+            elif 'yaencontre' in self.base_url:
+                position = self.driver.find_element_by_class_name('adress-link').text
         except Exception as e:
             print(e)
             return None
@@ -181,6 +196,9 @@ class PisosAPI:
                 image = self.driver.find_elements_by_tag_name('img')[2]
                 image_url = image.get_attribute('src')
                 #image_url = re.sub(r'[\"\;\)]',"",image_url)
+            elif 'yaencontre' in self.base_url:
+                image = self.driver.find_element_by_tag_name('img')
+                image_url = image.get_attribute('src')
         except Exception as e:
             print(e)
             return None
