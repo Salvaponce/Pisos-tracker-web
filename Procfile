@@ -1,0 +1,1 @@
+web: gunicorn --timeout 120 Price_tracker.wsgi --log-file -

@@ -1,0 +1,101 @@
+{% extends "base.html" %} {% block title %}Pisos_tracker{% endblock %} {% load static %}
+{%block content%}
+<div class="container">
+  <main>
+    <div class="py-5 text-center">
+      <h2>Formulario de busqueda</h2>
+      <p class="lead"
+        >Rellene el formulario para empezar su busqueda.</p
+      >
+    </div>
+
+    <div class="row g-5">
+      <div class="col-md-7 col-lg-8">
+        <h4 class="mb-3">Datos</h4>
+        
+        <form action="/results/" method="post" class="needs-validation" novalidate>
+          {% csrf_token %}  
+          <div class="row g-3">
+
+            <div class="col-md-4">
+              <label for="place" class="form-label"
+                >Provincia</label
+              >
+              <select class="form-select" name = "place" id="place" required>
+                <option value="">Elige...</option>
+                <option>Albacete</option>
+                <option>Alicante</option>
+                <option>Almeria</option>
+                <option>Asturias</option>
+                <option>Avila</option>
+                <option>Badajoz</option>
+                <option>Baleares</option>
+                <option>Barcelona</option>
+                <option>Burgos</option>
+                <option>Caceres</option>
+                <option>Cadiz</option>
+                <option>Cordoba</option>
+                <option>Cuenca</option>
+                <option>Girona</option>
+                <option>Granada</option>
+                <option>Guadalajara</option>
+                <option>Huelva</option>
+                <option>Huesca</option>
+                <option>Jaen</option>
+                <option>Leon</option>
+                <option>Lerida</option>
+                <option>Lugo</option>
+                <option>Madrid</option>
+                <option>Malaga</option>
+                <option>Murcia</option>
+                <option>Ourense</option>
+                <option>Palencia</option>
+                <option>Pontevedra</option>
+                <option>Salamanca</option>
+                <option>Segovia</option>
+                <option>Sevilla</option>
+                <option>Soria</option>
+                <option>Tarragona</option>
+                <option>Tenerife</option>
+                <option>Teruel</option>
+                <option>Toledo</option>
+                <option>Valencia</option>
+                <option>Valladolid</option>
+                <option>Zamora</option>
+                <option>Zaragoza</option>
+              </select>
+              <div class="invalid-feedback">
+                Se necesita una provincia valida.
+              </div>
+            </div>
+
+            
+            <div class="col-md-4">
+              <label for="filter" class="form-label"
+                >Filtro<span class="text-muted"> (Opcional)</span></label
+              >
+              <select class="form-select" name = "filter" id="filter">
+                <option value="">Elige...</option>
+                <option>Relevancia</option>
+                <option>Barato</option>
+                <option>Recientes</option>
+              </select>
+            </div>
+            
+
+          <hr class="my-4" />
+
+          <button class="w-100 btn btn-primary btn-lg" type="submit"
+            >Empezar</button
+          >
+        </form>
+      </div>
+    </div>
+  </main>
+
+</div>
+
+<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="/static/script/form-validation.js"></script>
+>{% endblock %}
