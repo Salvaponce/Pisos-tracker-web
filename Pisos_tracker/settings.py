@@ -25,7 +25,7 @@ SECRET_KEY = '*(b#5s8p82bt#)lvw81n_t2^&%i(guh*ayxndaezo)953&g#p@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'sp-pisos-tracker.herokuapp.com']
 
 
 # Application definition
@@ -118,5 +118,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'Pisos_tracker_app/static')
 
 STATIC_URL = '/static/'
