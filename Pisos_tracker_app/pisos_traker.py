@@ -36,7 +36,7 @@ class PisosAPI:
     def run(self):
         print(f'Buscando en {self.place}...')
         links = self.get_houses_links()
-        time.sleep(5)
+        #time.sleep(5)
         if not links:
             print('Parar Script')
             return
@@ -82,21 +82,21 @@ class PisosAPI:
 
     def get_by_pisos(self, link):
         self.driver.get(link)
-        time.sleep(2)
+        #time.sleep(2)
         result_link_list = self.driver.find_elements_by_class_name('ad-preview--has-desc')
         links = [self.base_url + link.get_attribute('data-lnk-href') for link in result_link_list][:3]
         return links
 
     def get_by_idealista(self, link):
         self.driver.get(link)
-        time.sleep(2)
+        #time.sleep(2)
         result_link_list = self.driver.find_elements_by_class_name('item-link')
         links = [self.base_url + link.get_attribute('href') for link in result_link_list][:3]
         return links
 
     def get_by_habitaclia(self, link):
         self.driver.get(link)
-        time.sleep(2)
+        #time.sleep(2)
         result_link_list = self.driver.find_elements_by_class_name('js-item-with-link')
         links = [link.get_attribute('data-href') for link in result_link_list][:3]
         return links

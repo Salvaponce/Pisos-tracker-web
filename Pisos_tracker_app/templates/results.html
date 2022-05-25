@@ -27,7 +27,7 @@
               <div class="btn-group">
                 <a href= {{h.link}}>
                 <button type="button" class="btn btn-sm btn-outline-secondary"
-                  >Comprar</button
+                  >Alquilar</button
                 ></a>
               </div>
             </div>
@@ -44,7 +44,7 @@
 {%if count != web|length%}
 <form method="POST">    
     {% csrf_token %}  
-<button class="w-100 btn btn-lg btn-primary" type="submit">Continuar</button></form>
+<button class="w-50 btn btn-lg btn-primary" type="submit">Continuar</button></form>
 {%endif%}
 
 </main>
