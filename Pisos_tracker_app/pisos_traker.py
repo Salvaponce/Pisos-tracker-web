@@ -32,6 +32,7 @@ class PisosAPI:
         options.add_argument("--disable-dev-shm-usage")
         options.add_argument("--no-sandbox")
 
+    # Funcion inicial
     def run(self):
         print(f'Buscando en {self.place}...')
         links = self.get_houses_links()
@@ -205,6 +206,7 @@ class PisosAPI:
         return image_url
     
     # Convertimos el texto donde esta el precio en un numero flotante
+    # Esta función se usaria si se necesitase hacer algo con el precio
     def conver_price(self, price):
         p_price = re.findall(r'[0-9]+', price)
         return float(p_price[0] + "." + p_price[1])    
