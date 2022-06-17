@@ -2,7 +2,7 @@
 {%block content%}
 <body class="text-center">   
 <main class="form-signin">
-<h1 class="h3 mb-3 fw-normal">Buscando en {{place}}</h1>
+<h1 class="h3 mb-3 fw-normal">Searching in {{place}}</h1>
 <br/>
 <div class="album py-5 bg-light">
   <div class="container">
@@ -27,7 +27,7 @@
               <div class="btn-group">
                 <a href= {{h.link}}>
                 <button type="button" class="btn btn-sm btn-outline-secondary"
-                  >Alquilar</button
+                  >Rent</button
                 ></a>
               </div>
             </div>
@@ -44,7 +44,7 @@
 {%if count != web|length%}
 <form method="POST">    
     {% csrf_token %}  
-<button class="w-50 btn btn-lg btn-primary" type="submit">Continuar</button></form>
+<button class="w-50 btn btn-lg btn-primary" type="submit">Next!</button></form>
 {%endif%}
 
 </main>

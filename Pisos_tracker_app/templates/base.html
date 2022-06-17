@@ -28,23 +28,23 @@
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="/" class="nav-link px-2 text-white">Home</a></li>
           {%if user.is_authenticated%}
-          <li><a href="/history" class="nav-link px-2 text-white">Historial</a></li>
+          <li><a href="/history" class="nav-link px-2 text-white">History</a></li>
           {% endif %}
-          <li><a href="/feedback" class="nav-link px-2 text-white">Contacto</a></li>
+          <li><a href="/feedback" class="nav-link px-2 text-white">Contact us</a></li>
         </ul>
 
         <div class="text-end">
           {% if user.is_authenticated %}
-            <p style="margin-right: 10px">Bienvenido {{user}}
+            <p style="margin-right: 10px">Welcome {{user}}
               <a href="/logout">
-              <button type="button" class="btn btn-warning">Salir</button></a> 
+              <button type="button" class="btn btn-warning">Go out</button></a> 
             </p>
           {% else %}
           <a href="/log_in">
-            <button type="button" class="btn btn-outline-light me-2">Entrar</button>
+            <button type="button" class="btn btn-outline-light me-2">Log in</button>
           </a>
           <a href="/sign_up">
-          <button type="button" class="btn btn-warning">Registrarse</button>
+          <button type="button" class="btn btn-warning">Sing up</button>
         </a>
           {% endif %}
         </div>

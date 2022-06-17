@@ -50,7 +50,7 @@ def results(request):
         return render(request, 'results.html', {'data': data_list, 'place':place, 'web':ls, 'count':count})
     return render(request, 'home.html')
 
-# Guarda la informacion de la busqueda cuando se llega hasta el final de la busqueda
+# Keep the information when we finish the search
 def save_data(name, data, user):
     title = name + " " + str(datetime.now().strftime("%d/%m/%Y %H:%M:%S"))
     report = Report.objects.create(title = title, user = user)
@@ -94,7 +94,7 @@ def logout_view(request):
     logout(request)
     return home(request)
 
-# Coge el report que queremos mostrar y lo muestra
+# Get the report and display it
 def history(request):
     report_list = Report.objects.filter(user = request.user)
     if request.method == 'POST' and request.POST.get('report_name'):
